@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<div class="row">
+    <h1 class="float-left col-md-10">Employee List</h1>
+    <div class="float-right">
+        <a class="btn btn-primary btn-lg float-right" href="{% url 'employee_new' %}">New Employee</a>
+        <!-- <button type="button" >New Employee</button> -->
+    </div>
+</div>
+{% if employee_list %}
+<table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employee_list %}
+      <tr>
+        <td>
+          <a href="{% url 'employee_view' employee.id %}">{{ employee.email }}</a>
+        </td>
+        <td>
+          {{ employee.name }}
+        </td>
+        <td>
+          <a class="btn btn-primary" href="{% url 'employee_edit' employee.id %}">Edit</a>
+        </td>
+        <td>
+          {% if employee.soft_delete is False %}
+          <form method="POST" action="{% url 'employee_delete' employee.id %}">
+              {% csrf_token %}<input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+          {% else %}
+              <span class="text-danger">DELETED</span>
+          {% endif %}
+  
+          <!-- <a href="{#% url 'employee_delete' employee.id %#}">Delete</a> -->
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    {#% render_table table %#}
+{% else %}
+<p>There are no employees in the library.</p>
+{% endif %}
+{% endblock %}

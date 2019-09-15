@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block content %}
+<h1>Employee Details</h1>
+<div class="row">
+  <div class="col-md-11 col-sm-11">
+    <div class="profile-info-row">
+      <div class="profile-info-name">Name</div>
+      <div class="profile-info-value">{{ employee.name }}</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">Email</div>
+      <div class="profile-info-value">
+        <span>{{ employee.email }}</span>
+      </div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">Gender</div>
+      <div class="profile-info-value primary">
+        <span>{{ employeeInfo.gender }}</span>
+      </div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">DOB</div>
+      <div class="profile-info-value">
+        <span>{{ employeeInfo.dob }}</span>
+      </div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">Phone</div>
+      <div class="profile-info-value">
+        <span>{{ employeeInfo.phone }}</span>
+      </div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">Address</div>
+      <div class="profile-info-value">
+        <span>{{ employeeInfo.curr_address }}</span>
+      </div>
+    </div>
+    <div class="profile-info-row">
+      <div class="profile-info-name">Date of Joining</div>
+      <div class="profile-info-value">
+        <span>{{ employeeInfo.joining_date }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
